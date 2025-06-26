@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#f0f0f0"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Waiting for microphone permission..."
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:padding="12dp"
+        android:background="@drawable/rounded_background"
+        android:elevation="4dp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/addNewTaskButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Manual Task (for testing)"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp"
+        android:minHeight="48dp"
+        android:stateListAnimator="@null"
+        android:focusable="true"
+        android:clickable="true"
+        android:outlineProvider="background"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@drawable/button_background_ripple"/> <!-- Use a ripple drawable for button feedback -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:background="@drawable/rounded_card_background"
+        android:elevation="2dp"
+        android:scrollbars="vertical"/>
+
+</LinearLayout>

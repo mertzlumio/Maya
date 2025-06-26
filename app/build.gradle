@@ -1,0 +1,86 @@
+// build.gradle (Module: app)
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdk 34
+    namespace 'com.example.app'
+
+    defaultConfig {
+        applicationId "com.example.app"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // NEW: Define NDK ABI filters to only build for common architectures
+        // This speeds up build and reduces APK size.
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a'
+            // 'x86', 'x86_64' if you need emulator support as well
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets']
+        }
+    }
+
+    // NEW: External Native Build configuration for CMake
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            // arguments "-DWHISPER_NO_NEW_API=ON" // Only if needed for older whisper.cpp versions
+        }
+    }
+
+    // IMPORTANT: Remove packagingOptions related to libpv_porcupine.so and libwhisper.so if you had them.
+    // The SDKs/Native build now handle this.
+    packagingOptions {
+        // Example if you encounter specific duplicates, but should not be needed by default now.
+        // pickFirst 'lib/arm64-v8a/libsome_other_library.so'
+    }
+}
+
+dependencies {
+    // AndroidX libraries
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // Picovoice Porcupine Android SDK
+    implementation 'ai.picovoice:porcupine-android:3.0.2'
+
+    // REMOVED: implementation 'com.github.JianLiin:whisper-android:1.0.1' // No longer needed
+    // The whisper.cpp native library will be built directly by NDK/CMake
+
+    // Testing dependencies
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        if (details.requested.group == 'org.jetbrains.kotlin') {
+            details.useVersion '1.8.22'
+        }
+    }
+}
