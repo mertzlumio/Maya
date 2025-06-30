@@ -30,3 +30,5 @@ ParentFolder/
    git clone https://github.com/ggerganov/whisper.cpp.git
 
 2. **Go to picovoice website and get your access key**
+
+3. **Replace the your access key in AndroidMainActivity.java in the of ACCESS_KEY**
