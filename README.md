@@ -29,3 +29,4 @@ ParentFolder/
    ```bash
    git clone https://github.com/ggerganov/whisper.cpp.git
 
+2. **Go to picovoice website and get your access key**
