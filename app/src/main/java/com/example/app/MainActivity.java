@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnTas
     private List<Task> tasks;
 
     // Picovoice AccessKey - get your own key from oicvoice
-    private static final String ACCESS_KEY = "go to piccoice and get a key for your wake word";
+    private static final String ACCESS_KEY = "GET_YOUR_KEY_FROM_PICOVOICE";
 
     // Whisper model asset name
     private static final String WHISPER_MODEL_ASSET = "ggml-tiny.en-q8_0.bin";
