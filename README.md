@@ -1,4 +1,4 @@
-# Maya - Voice Activated Android App 
+# Maya - App To Be Commanded With Voice 
 
 Maya is an Android application built using **Java 17**.  
 This project integrates with the [`whisper.cpp`](https://github.com/ggerganov/whisper.cpp) library, which must be cloned and placed as a **sister folder** to this project.
