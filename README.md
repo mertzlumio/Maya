@@ -31,4 +31,4 @@ ParentFolder/
 
 2. **Go to picovoice website and get your access key**
 
-3. **Replace the your access key in AndroidMainActivity.java in the ACCESS_KEY**
+3. **Replace your access key in AndroidMainActivity.java in the place of ACCESS_KEY**
